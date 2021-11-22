@@ -29,7 +29,7 @@ Our first job is getting something showing on the front end from our database. H
 
 ### Back End
 
-1.  Design a database to store a list of tasks
+1.  Design a database to store a list of your things (e.g. books)
 1.  Build the migrations and seed data
 1.  Build an API (back end route) to get the information from your database
 1.  Test your API with Postman/Insomnia
