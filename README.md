@@ -56,5 +56,5 @@ At this stage we should be able to view our information. Below are suggested nex
 - Include the ability to update records (e.g. for correcting typos)
   - You might have some other information (e.g. unread books vs. read books) that should be included in your database design, but this may require adjusting your database design - start simple!
 - Is there any complex data you chose to not include earlier or any way you could expand this dataset?
-- COuld you add an external API (maybe an inspirational quote in the footer?)
+- Could you add an external API (maybe an inspirational quote in the footer?)
 - If you haven't already, CSS!
