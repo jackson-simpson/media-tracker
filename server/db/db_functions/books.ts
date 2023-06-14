@@ -1,9 +1,9 @@
-const { db } = require('../connection')
+const { connection } = require('../connection')
 
 // Get All Books
 
 function getAllBooks() {
-  return db('books').select
+  return connection('books').select
 }
 
 module.exports = {
