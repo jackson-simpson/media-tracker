@@ -11,8 +11,9 @@ import {
 import App from './components/App'
 import Home from './components/Home'
 import Books from './components/Books'
-// import Book from './components/Book'
-// import Edit from './components/Edit'
+import Book from './components/Book'
+
+//====================================
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/books" element={<Books />} />
       <Route path="/books/:id" element={<Book />} />
-        {/* <Route path="/edit" element={<Edit />} /> */}
+      {/* <Route path="/edit" element={<Edit />} /> */}
     </Route>
   )
 )
