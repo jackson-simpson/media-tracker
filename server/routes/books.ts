@@ -1,17 +1,19 @@
-const express = require('express')
-const db = require('../db')
+import express from 'express'
+import * as db from '../db/db_functions/books'
 
 const router = express.Router()
 
 //GET ROUTES
 
-//Get books
+//Get all books
 
 router.get('/', async (req, res) => {
-  const books = await db.getAllBooks()
-  const viewData = { books }
-
-  res.json('showAllBooks', viewData)
+  try {
+    const books = await db.getAllBooks()
+    res.json(books)
+  } catch (e) {
+    res.sendStatus(500)
+  }
 })
 
 //Export

@@ -1,11 +1,8 @@
-const { connection } = require('../connection')
+import connection from '../connection'
+import type { Book } from '../../../models/books'
 
 // Get All Books
 
-function getAllBooks() {
-  return connection('books').select
-}
-
-module.exports = {
-  getAllBooks,
+export function getAllBooks(): Promise<Book[]> {
+  return connection('books').select()
 }
