@@ -11,7 +11,9 @@ function Books() {
     <>
       <header>
         <h3>{book && book.title}</h3>
+        <h4>By {book && book.author}</h4>
       </header>
+      <section></section>
     </>
   )
 }
