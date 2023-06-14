@@ -1,6 +1,5 @@
 import { Book } from './books'
 
-
 export type Action = 
   | { type: 'ERROR', payload: string }
   | { type: 'SET_BOOKS', payload: Book[] }

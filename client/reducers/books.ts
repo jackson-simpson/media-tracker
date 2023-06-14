@@ -1,28 +1,30 @@
-import { ERROR } from 'sqlite3'
+import { Action } from '../../models/actions'
+import { Book } from '../../models/books'
+import * as book from '../actions/books'
 
 const initialState = [] as Book[]
 
 export default function bookReducers(state = initialState, action: Action) {
   const { type, payload } = action
   switch (type) {
-    case SET_BOOKS:
+    case book.SET_BOOKS:
       return payload
 
-    case ADD_BOOK:
+    case book.ADD_BOOK:
       return [...state, payload]
 
-    case DEL_BOOK:
+    case book.DEL_BOOK:
       return state.filter((book) => book.id !== payload)
 
-    case UPDATE_BOOK:
-      return state.map((book) => {
-        if (book.id === payload.id) {
-          return {}
-        }
-        return book
-      })
+    // case book.UPDATE_BOOK:
+    //   return state.map((book) => {
+    //     if (book.id === payload.id) {
+    //       return {}
+    //     }
+    //     return book
+    //   })
 
-    case ERROR:
+    case book.ERROR:
       return payload
 
     default:
