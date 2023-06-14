@@ -6,7 +6,8 @@ import { Routes, Route } from 'react-router-dom'
 import { useAppDispatch } from '../hooks/hooks'
 
 // Components
-import Books from './Books'
+// import Home from './Home'
+// import Books from './Books'
 
 function App() {
   return (
@@ -14,9 +15,7 @@ function App() {
       <header className="header">
         <h1>My Collection</h1>
       </header>
-      <Routes></Routes>
     </>
   )
 }
-
 export default App
