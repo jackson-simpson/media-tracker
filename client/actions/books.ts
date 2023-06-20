@@ -22,7 +22,7 @@ export function error(message: string): Action {
   }
 }
 
-// Simple Actions
+//--------------- Simple Actions -----------------
 
 export function setBooks(books: Book[]): Action {
   return {
@@ -31,7 +31,7 @@ export function setBooks(books: Book[]): Action {
   }
 }
 
-// Thunk Actions
+//--------------- Thunk Actions ------------------
 
 export function getAllBooks(): ThunkAction {
   return async (dispatch) => {

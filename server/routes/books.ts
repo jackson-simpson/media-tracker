@@ -21,13 +21,16 @@ router.get('/', async (req, res) => {
   }
 })
 
-// Add a new book
-// router.post('/', async (req, res) => {
-//   try {
-
-//   } catch (err) {
-
-//   }
-// })
+// Delete a new book
+router.delete('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    await db.deleteBook(id)
+    res.sendStatus(200)
+  } catch (err) {
+    console.log('Book Route: Delete. Error!', err)
+    res.sendStatus(500)
+  }
+})
 
 export default router
