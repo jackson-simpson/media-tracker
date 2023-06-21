@@ -14,7 +14,11 @@
     "dev:client": "vite",
     "dev:server": "nodemon server/index.ts",
     "knex": "knex --knexfile ./server/db/knexfile.js",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "db-reset": "npm run rollback && npm run migrate-latest && npm run seed",
+    "rollback": "npm run knex migrate:rollback",
+    "migrate-latest": "npm run knex migrate:latest",
+    "seed": "npm run knex seed:run"
   },
   "keywords": [
     "fullstack"

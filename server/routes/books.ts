@@ -8,7 +8,6 @@ const router = express.Router()
 //==================== ROUTES ======================
 
 //TODO: Add a add book (may need to be combined with a external API)
-//TODO: Add a delete route
 //TODO: Add a update route for moving it to the read status.
 
 // Get all books

@@ -1,7 +1,7 @@
 import { Action } from '../../models/actions'
 import { Book } from '../../models/books'
 
-import { getBooks } from '../apis/internal/books'
+import * as api from '../apis/internal/books'
 import { ThunkAction } from '../store'
 
 //================= Global Variables =================
@@ -31,15 +31,34 @@ export function setBooks(books: Book[]): Action {
   }
 }
 
-//--------------- Thunk Actions ------------------
+export function deleteBook(id: number): Action {
+  return {
+    type: DEL_BOOK,
+    payload: id,
+  }
+}
 
-export function getAllBooks(): ThunkAction {
+//--------------- Thunk Actions ------------------
+//GET books
+export function getBooksThunk(): ThunkAction {
   return async (dispatch) => {
     try {
-      const bookArr = await getBooks()
+      const bookArr = await api.getBooks()
       dispatch(setBooks(bookArr))
-    } catch (e) {
-      dispatch(error(String(e)))
+    } catch (err) {
+      dispatch(error(String(err)))
+    }
+  }
+}
+
+//DEL book
+export function delBookThunk(id: number): ThunkAction {
+  return async (dispatch) => {
+    try {
+      await api.delBook(id)
+      dispatch(deleteBook(id))
+    } catch (err) {
+      dispatch(error(String(err)))
     }
   }
 }
