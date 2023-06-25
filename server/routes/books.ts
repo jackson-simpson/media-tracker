@@ -37,10 +37,24 @@ router.post('/', async (req, res) => {
   const newBook = req.body
 
   try {
-    const bookAddConformationArr = await db.addBook(newBook)
+    const bookAddConformationArr = await db.addBook(newBook) // Book Add Confirmation Arrary
     res.json(bookAddConformationArr[0])
   } catch (err) {
     console.error('Book Route: Post. Error! ', err)
+    res.sendStatus(500)
+  }
+})
+
+//Update a book
+router.patch('/:id', async (req, res) => {
+  const newBookData = req.body
+  const id = Number(req.params.id)
+
+  try {
+    const updatedBookData = await db.updateBook(id, newBookData)
+    res.json(updatedBookData)
+  } catch (err) {
+    console.error('Book Route: Patch. Error! ', err)
     res.sendStatus(500)
   }
 })

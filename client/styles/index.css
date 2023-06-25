@@ -6,3 +6,12 @@ body {
   padding: 20px;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox {
+  -ms-flex-align: baseline;
+}
