@@ -32,4 +32,17 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+//Add a book
+router.post('/', async (req, res) => {
+  const newBook = req.body
+
+  try {
+    const bookAddConformationArr = await db.addBook(newBook)
+    res.json(bookAddConformationArr[0])
+  } catch (err) {
+    console.error('Book Route: Post. Error! ', err)
+    res.sendStatus(500)
+  }
+})
+
 export default router

@@ -6,5 +6,5 @@ export interface BookData {
 
 export interface Book extends BookData {
   id: number
-  dataAdded: number
+  date_added: number //Back-End only
 }

@@ -1,5 +1,5 @@
 import req from 'superagent'
-import { Book } from '../../../models/books'
+import { Book, BookData } from '../../../models/books'
 
 const serverUrl = '/api/v1/books'
 
@@ -10,4 +10,9 @@ export async function getBooks(): Promise<Book[]> {
 
 export async function delBook(id: number) {
   await req.delete(`${serverUrl}/${id}`)
+}
+
+export async function postBook(data: BookData) {
+  const res = await req.post(`${serverUrl}`).send(data)
+  return res.body
 }

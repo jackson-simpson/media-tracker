@@ -1,6 +1,7 @@
 import { useAppSelector } from '../hooks/hooks'
 import { Link } from 'react-router-dom'
 import { Book } from '../../models/books'
+import AddBook from './AddBook'
 
 function Books() {
   const books = useAppSelector((state) => state.books as Book[])
@@ -16,6 +17,7 @@ function Books() {
           )
         })}
       </ul>
+      <AddBook />
     </>
   )
 }
