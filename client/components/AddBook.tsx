@@ -27,7 +27,7 @@ function AddBook() {
       title: '',
       author: '',
       read: false,
-    } as BookData)
+    })
   }
 
   return (
