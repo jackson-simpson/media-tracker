@@ -1,5 +1,5 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks/hooks'
+import { useAppDispatch } from '../hooks/hooks'
 import { BookData } from '../../models/books'
 import * as actions from '../actions/books'
 
