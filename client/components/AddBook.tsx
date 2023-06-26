@@ -57,7 +57,7 @@ function AddBook() {
         <label htmlFor="read">Have Read?</label>
         <input
           className="checkbox"
-          checked={formData.read}
+          defaultChecked={false}
           type="checkbox"
           id="read"
           name="read"

@@ -92,7 +92,6 @@ function EditBook() {
               <label htmlFor="read">Have Read?</label>
               <input
                 className="checkbox"
-                checked={formData.read}
                 defaultChecked={formData.read}
                 type="checkbox"
                 id="read"
