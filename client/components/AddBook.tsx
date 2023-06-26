@@ -16,7 +16,6 @@ function AddBook() {
       ...formData,
       [evt.target.name]: evt.target.value,
     })
-    console.log(formData)
   }
 
   const handleSubmit = (evt: FormEvent) => {

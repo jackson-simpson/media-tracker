@@ -1,16 +1,61 @@
-import { useAppDispatch } from '../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { useNavigate, useParams } from 'react-router-dom'
+import { FormEvent, useState, ChangeEvent, useEffect } from 'react'
+import { Book } from '../../models/books'
 import * as actions from '../actions/books'
-import { useState } from 'react'
 
 function EditBook() {
-  const { id } = useParams()
+  //===================== CONFIG ===================
+  const books: Book[] = useAppSelector((store) => store.books)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [hidden, setHidden] = useState(true as boolean)
+  const { id } = useParams()
+  const [hiddenForm, setHiddenForm] = useState(true as boolean)
+  const [hiddenDelete, setHiddenDelete] = useState(true as boolean)
 
-  const handleHide = () => {
-    setHidden(!hidden)
+  const currentBookInfo = books.find((book) => {
+    if (book.id === Number(id)) {
+      return book
+    }
+  })
+
+  const [formData, setFormData] = useState({
+    title: '',
+    author: '',
+    read: false,
+  } as Book)
+
+  //==================== Page Functionality =================
+
+  useEffect(() => {
+    setFormData(
+      {
+        title: currentBookInfo?.title,
+        author: currentBookInfo?.author,
+        read: currentBookInfo?.read,
+      },
+      []
+    )
+  })
+
+  const handleHideDelete = () => {
+    setHiddenDelete(!hiddenDelete)
+  }
+
+  const handleHideForm = () => {
+    setHiddenForm(!hiddenForm)
+  }
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    })
+  }
+
+  const handleSubmit = (evt: FormEvent) => {
+    evt.preventDefault()
+    dispatch(actions.updateBookThunk(Number(id), formData))
   }
 
   const handleDelete = (id: number) => {
@@ -18,23 +63,65 @@ function EditBook() {
     navigate('/')
   }
 
+  // ===================== Page Content ==================
   return (
     <>
       <section>
-        {}
-        <form></form>
-      </section>
+        {hiddenForm ? (
+          <button onClick={handleHideForm}>Edit Book Info</button>
+        ) : (
+          <>
+            <form>
+              <label htmlFor="title">Book Title</label>
+              <input
+                value={formData.title}
+                placeholder={formData.title}
+                type="text"
+                id="title"
+                name="title"
+                onChange={handleChange}
+              />
 
-      {/* Button for deleting this book entry - I want too: 
-        1. Have it toggle to a secondary confirmation state
-        2. Have it include two buttons, yes and no. */}
+              <label htmlFor="author">Book Author</label>
+              <input
+                value={formData.author}
+                placeholder={formData.author}
+                type="text"
+                id="author"
+                name="author"
+                onChange={handleChange}
+              />
+
+              <label htmlFor="read">Have Read?</label>
+              <input
+                className="checkbox"
+                checked={formData.read}
+                defaultChecked={formData.read}
+                type="checkbox"
+                id="read"
+                name="read"
+                onChange={handleChange}
+              />
+
+              <input
+                type="submit"
+                value="Update Book Information"
+                onClick={handleSubmit}
+              />
+            </form>
+            <button onClick={() => handleHideForm()}>Back</button>
+          </>
+        )}
+      </section>
       <section>
-        {hidden ? (
-          <button onClick={() => handleHide()}>Delete Book</button>
+        {hiddenDelete ? (
+          <button onClick={() => handleHideDelete()}>Delete Book</button>
         ) : (
           <section>
             <p>Are you sure?</p>
-            <button onClick={() => handleHide()}>No, don&apos;t delete</button>
+            <button onClick={() => handleHideDelete()}>
+              No, don&apos;t delete
+            </button>
             <button onClick={() => handleDelete(Number(id))}>
               Yes, Delete Book
             </button>
