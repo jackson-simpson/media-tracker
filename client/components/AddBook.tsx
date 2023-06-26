@@ -20,7 +20,11 @@ function AddBook() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-    dispatch(actions.addBookThunk(formData))
+    if (formData.title === '' || formData.author === '') {
+      return null
+    } else {
+      dispatch(actions.addBookThunk(formData))
+    }
 
     setFormData({
       title: '',
@@ -60,7 +64,7 @@ function AddBook() {
           onChange={handleChange}
         />
 
-        <input type="submit" value="Add a Book!" onClick={handleSubmit} />
+        <input type="submit" value="Submit" onClick={handleSubmit} />
       </form>
     </>
   )

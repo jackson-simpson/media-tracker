@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormEvent, useState, ChangeEvent, useEffect } from 'react'
-import { Book } from '../../models/books'
+import { Book, UpdateBookData } from '../../models/books'
 import * as actions from '../actions/books'
 
 function EditBook() {
@@ -23,20 +23,17 @@ function EditBook() {
     title: '',
     author: '',
     read: false,
-  } as Book)
+  } as UpdateBookData)
 
   //==================== Page Functionality =================
 
   useEffect(() => {
-    setFormData(
-      {
-        title: currentBookInfo?.title,
-        author: currentBookInfo?.author,
-        read: currentBookInfo?.read,
-      },
-      []
-    )
-  })
+    setFormData({
+      title: currentBookInfo?.title,
+      author: currentBookInfo?.author,
+      read: currentBookInfo?.read,
+    } as UpdateBookData)
+  }, [currentBookInfo])
 
   const handleHideDelete = () => {
     setHiddenDelete(!hiddenDelete)
