@@ -53,6 +53,7 @@ function EditBook() {
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
     dispatch(actions.updateBookThunk(Number(id), formData))
+    handleHideForm()
   }
 
   const handleDelete = (id: number) => {

@@ -24,9 +24,8 @@ export function addBook(data: BookData): Promise<Book[]> {
     .returning(['id', 'title', 'author', 'read', 'date_added'])
 }
 
-//------------------- Update a book -----------------
-//TODO: Will eventually just update the read status
+//------------------- Update a book ------------------
 
-export function updateBook(id: number, data: BookData): Promise<Book> {
+export function updateBook(id: number, data: BookData): Promise<Book[]> {
   return db('books').update(data).where({ id }).returning(['*'])
 }

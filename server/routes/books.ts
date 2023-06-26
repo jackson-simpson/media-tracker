@@ -51,7 +51,7 @@ router.patch('/:id', async (req, res) => {
 
   try {
     const updatedBookData = await db.updateBook(id, newBookData)
-    res.json(updatedBookData)
+    res.json(updatedBookData[0])
   } catch (err) {
     console.error('Book Route: Patch. Error! ', err)
     res.sendStatus(500)

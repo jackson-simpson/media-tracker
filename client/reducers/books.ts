@@ -17,12 +17,7 @@ export default function bookReducers(state = initialState, action: Action) {
       return state.filter((book) => book.id !== payload)
 
     case book.UPDATE_BOOK:
-      return state.map((book) => {
-        if (book.id === payload.id) {
-          return {}
-        }
-        return book
-      })
+      return state.map((book) => (book.id === payload.id ? payload : book))
 
     case book.ERROR:
       return payload
