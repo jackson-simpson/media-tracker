@@ -16,6 +16,7 @@ function Books() {
         <h4>By {book && book.author}</h4>
       </header>
       {/* <AddReview />  */}
+      <EditBook />
       <button onClick={() => navigate('/')}>Back to Home</button>
     </>
   )

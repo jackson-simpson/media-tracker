@@ -16,3 +16,8 @@ export async function postBook(data: BookData) {
   const res = await req.post(`${serverUrl}`).send(data)
   return res.body
 }
+
+export async function patchBook(id: number, data: BookData) {
+  const res = await req.patch(`${serverUrl}/${id}`).send(data)
+  return res.body
+}

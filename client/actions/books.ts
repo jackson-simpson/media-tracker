@@ -1,5 +1,5 @@
 import { Action } from '../../models/actions'
-import { Book, BookData } from '../../models/books'
+import { Book, BookData, UpdateBookData } from '../../models/books'
 
 import * as api from '../apis/internal/books'
 import { ThunkAction } from '../store'
@@ -45,6 +45,13 @@ export function addBook(data: BookData): Action {
   }
 }
 
+export function updateBook(data: UpdateBookData): Action {
+  return {
+    type: UPDATE_BOOK,
+    payload: data,
+  }
+}
+
 //--------------- Thunk Actions ------------------
 //GET books
 export function getBooksThunk(): ThunkAction {
@@ -76,6 +83,19 @@ export function addBookThunk(data: BookData): ThunkAction {
     try {
       const res = await api.postBook(data)
       dispatch(addBook(res))
+    } catch (err) {
+      dispatch(error(String(err)))
+    }
+  }
+}
+
+//UPDATE a book
+
+export function updateBookThunk(id: number, data: BookData): ThunkAction {
+  return async (dispatch) => {
+    try {
+      const res = await api.patchBook(id, data)
+      dispatch(updateBook(res))
     } catch (err) {
       dispatch(error(String(err)))
     }
