@@ -1,9 +1,5 @@
-//======================Imports=======================
-// React
 import { Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
-
-// Redux
 import { useAppDispatch } from '../hooks/hooks'
 import * as actions from '../actions/books'
 
